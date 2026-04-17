@@ -24,9 +24,6 @@ Baagy Nation is a stylish and user-friendly e-commerce website built using HTML,
 
 This project is created as a front-end web development practice to demonstrate skills in designing an e-commerce platform.
 
-## 📷 Preview
-
-(Add screenshots of your website here)
 
 ## 🚀 Future Improvements
 
