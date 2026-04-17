@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Baggy Nation</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+
+body {
+    margin: 0;
+    font-family: Arial;
+    background-color: #0F0F0F;
+    color: white;
+}
+
+/* TOP BAR */
+.topbar {
+    background: #39FF14;
+    color: black;
+    text-align: center;
+    padding: 8px;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: black;
+}
+
+.logo {
+    font-size: 26px;
+    color: #39FF14;
+}
+
+.search input {
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+}
+
+/* ICONS */
+.icons i {
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.icons i:hover {
+    color: #39FF14;
+}
+
+/* SLIDER */
+.slider {
+    position: relative;
+    height: 350px;
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.active-slide {
+    display: block;
+}
+
+/* HERO */
+.hero {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* PRODUCTS */
+.products {
+    padding: 40px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: #1A1A1A;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.price {
+    color: #39FF14;
+}
+
+/* HEART */
+.heart {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.liked {
+    color: red;
+}
+
+/* BUTTON */
+.btn {
+    margin-top: 10px;
+    padding: 10px;
+    background: #39FF14;
+    border: none;
+    cursor: pointer;
+}
+
+/* CART PANEL */
+.cart-panel {
+    position: fixed;
+    right: -300px;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background: black;
+    padding: 20px;
+    transition: 0.3s;
+}
+
+.cart-panel.show {
+    right: 0;
+}
+
+/* CLOSE BUTTON */
+.close-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+/* FOOTER */
+.footer {
+    background: black;
+    text-align: center;
+    padding: 20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">Free Shipping on Orders Above ₹999 🚚</div>
+
+<div class="navbar">
+    <div class="logo">Baggy Nation</div>
+
+    <div class="search">
+        <input type="text" placeholder="Search...">
+    </div>
+
+    <div class="icons">
+        <i class="fas fa-heart"></i>
+        <span id="wishCount">0</span>
+
+        <i class="fas fa-shopping-cart" onclick="toggleCart()"></i>
+        <span id="count">0</span>
+    </div>
+</div>
+
+<!-- SLIDER -->
+<div class="slider">
+    <div class="slide active-slide">
+        <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?w=1200">
+    </div>
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1200">
+    </div>
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=1200">
+    </div>
+</div>
+
+<div class="hero">
+    <h1>Go Big. Go Baggy.</h1>
+</div>
+
+<div class="products">
+<div class="grid">
+
+<div class="card">
+<i class="fas fa-heart heart" onclick="like(this)"></i>
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400">
+<h3>T-Shirt</h3>
+<p class="price">₹699</p>
+<button class="btn" onclick="addToCart('T-Shirt',699)">Add to Cart</button>
+</div>
+
+<div class="card">
+<i class="fas fa-heart heart" onclick="like(this)"></i>
+<img src="https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=400">
+<h3>Hoodie</h3>
+<p class="price">₹1299</p>
+<button class="btn" onclick="addToCart('Hoodie',1299)">Add to Cart</button>
+</div>
+
+<div class="card">
+<i class="fas fa-heart heart" onclick="like(this)"></i>
+<img src="https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=400">
+<h3>Cargo Pants</h3>
+<p class="price">₹1499</p>
+<button class="btn" onclick="addToCart('Cargo Pants',1499)">Add to Cart</button>
+</div>
+
+<div class="card">
+<i class="fas fa-heart heart" onclick="like(this)"></i>
+<img src="https://images.unsplash.com/photo-1603252109303-2751441dd157?w=400">
+<h3>Shirt</h3>
+<p class="price">₹899</p>
+<button class="btn" onclick="addToCart('Shirt',899)">Add to Cart</button>
+</div>
+
+</div>
+</div>
+
+<!-- CART PANEL -->
+<div class="cart-panel" id="cartPanel">
+    <h2>Your Cart</h2>
+
+    <!-- CLOSE BUTTON -->
+    <button class="close-btn" onclick="toggleCart()">Close ❌</button>
+
+    <div id="cartItems"></div>
+    <p>Total: ₹<span id="total">0</span></p>
+</div>
+
+<div class="footer">© 2026 Baggy Nation 😎</div>
+
+<script>
+
+/* SLIDER */
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+setInterval(() => {
+    slides[index].classList.remove("active-slide");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active-slide");
+}, 3000);
+
+/* ❤️ WISHLIST */
+let wish = 0;
+
+function like(el) {
+    if (el.classList.contains("liked")) {
+        el.classList.remove("liked");
+        wish--;
+    } else {
+        el.classList.add("liked");
+        wish++;
+    }
+    document.getElementById("wishCount").innerText = wish;
+}
+
+/* 🛒 CART */
+let cart = {};
+let total = 0;
+let count = 0;
+
+function addToCart(name, price) {
+    if(cart[name]) {
+        cart[name].qty++;
+        cart[name].total += price;
+    } else {
+        cart[name] = {price: price, qty: 1, total: price};
+    }
+
+    count++;
+    total += price;
+
+    document.getElementById("count").innerText = count;
+    displayCart();
+}
+
+function displayCart() {
+    let cartDiv = document.getElementById("cartItems");
+    cartDiv.innerHTML = "";
+
+    for(let item in cart) {
+        cartDiv.innerHTML += `<p>${item} x${cart[item].qty} - ₹${cart[item].total}</p>`;
+    }
+
+    document.getElementById("total").innerText = total;
+}
+
+/* OPEN / CLOSE CART */
+function toggleCart() {
+    document.getElementById("cartPanel").classList.toggle("show");
+}
+
+</script>
+
+</body>
+</html>
